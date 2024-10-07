@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Post;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -14,7 +15,22 @@ class PostType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder
+        $builder->add('category', ChoiceType::class, [
+            'choices' => [
+                // 'PHP' => 'php',
+                // 'Laravel' => 'laravel',
+                // 'Symfony' => 'symfony'
+                'Languages' => [
+                    'PHP' => 'php'
+                ],
+                'Frameworks' => [
+                    'Laravel' => 'laravel',
+                    'Symfony' => 'symfony',
+                ]
+            ],
+            'placeholder' => 'Seleccione una...',
+            'label' => 'Categorías',
+        ])
             ->add('title', TextType::class, [
                 'label' => "Título de la publicación",
                 'help' => "Piensa en el SEO ¿Cómo buscaría en Google?"
