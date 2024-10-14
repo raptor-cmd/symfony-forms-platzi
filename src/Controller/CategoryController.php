@@ -12,7 +12,15 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class CategoryController extends AbstractController
 {
-    #[Route('/category/crear', name: 'category_create', methods: ['GET', 'POST'])]
+    #[Route('/categorias', name: 'category_index')]
+    public function index(EntityManagerInterface $entityManager): Response
+    {
+        return $this->render('category/index.html.twig', [
+            'categories' => $entityManager->getRepository(Category::class)->findAll(),
+        ]);
+    }
+
+    #[Route('/categoria/crear', name: 'category_create', methods: ['GET', 'POST'])]
     public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(CategoryType::class);
@@ -33,7 +41,7 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    #[Route('/category/{id}/editar', name: 'category_edit', methods: ['GET', 'POST'])]
+    #[Route('/categoria/{id}/editar', name: 'category_edit', methods: ['GET', 'POST'])]
     public function edit(Category $category, Request $request, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(CategoryType::class, $category);
