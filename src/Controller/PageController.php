@@ -17,7 +17,7 @@ class PageController extends AbstractController
 
 
     #[Route('/', name: 'index', methods: ['GET'])]
-    public function index(Request $request): Response
+    public function index(): Response
     {
 
         return $this->render('page/index.html.twig');

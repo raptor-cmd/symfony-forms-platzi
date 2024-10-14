@@ -23,14 +23,17 @@ class PostType extends AbstractType
             'class' => Category::class,
             'placeholder' => 'Seleccione una...',
             'label' => 'Categorías',
+            // 'required' => false,
         ])
             ->add('title', TextType::class, [
                 'label' => "Título de la publicación",
-                'help' => "Piensa en el SEO ¿Cómo buscaría en Google?"
+                'help' => "Piensa en el SEO ¿Cómo buscaría en Google?",
+                // 'required' => false,
             ])
             ->add('body', TextareaType::class, [
                 'label' => 'Contenido',
-                'attr' => ['rows' => 9, 'class' => 'bg-light']
+                'attr' => ['rows' => 9, 'class' => 'bg-light'],
+                // 'required' => false,
             ])
             ->add('Enviar', SubmitType::class, [
                 'attr' => ['class' => 'btn-dark']
